@@ -8,9 +8,9 @@ test -d $TMPDIR
 
 AP_BRANCH=${AP_BRANCH:=master}
 AP_FILES=${AP_FILES:=.}
-AP_CMD=${AP_CMD:=make update}
+AP_CMD=${AP_CMD:='go generate ./...'}
 
-REPO_URL="https://${GH_USER}:${GH_TOKEN}@github.com/${AP_REPO}.git"
+REPO_URL="https://${GH_USER}:${GH_PASS}@github.com/${AP_REPO}.git"
 CREATE_PR_URL="https://api.github.com/repos/${AP_REPO}/pulls"
 DATE="$(date -u +%Y-%m-%dT%H:%M:%SZ)"
 SAFE_DATE="$(date -u +%Y-%m-%d-%H-%M-%S)"
@@ -34,13 +34,7 @@ cd $AP_REPO_DIR
 git checkout $AP_BRANCH
 git checkout -q -b $BRANCH
 
-# Future configuration file?
-# AP_CONF=${AP_CONF:=autopull.conf}
-# test -f $AP_CONF && . $AP_CONF
-if [[ $AP_SETUP_CMD ]]; then
-	source $AP_SETUP_CMD
-fi
-eval $AP_CMD
+$AP_CMD
 
 git add --all $AP_FILES
 echo -e "autopull: ${DATE}" | git commit -F -
@@ -48,7 +42,7 @@ git push origin $BRANCH:$BRANCH
 
 PR=$(cat <<EOF
 {
-  "title": "autopull: $DATE",
+  "title": "gtld autopull: $DATE",
   "base": "$AP_BRANCH",
   "head": "$BRANCH"
 }

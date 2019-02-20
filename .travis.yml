@@ -1,0 +1,12 @@
+language: go
+
+sudo: true
+
+go:
+  - "1.11.x"
+
+install:
+  - go get github.com/zmap/zlint/cmd/zlint-gtld-update
+
+script:
+  - ./autopull
