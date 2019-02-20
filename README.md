@@ -1,5 +1,7 @@
 # zlint autopull
 
+[![Build Status](https://travis-ci.com/cpu/autopull.svg?branch=master)](https://travis-ci.com/cpu/autopull)
+
 Bash script that auto-creates Pull Requests for
 [zlint](https://github.com/zmap/zlint)'s gtld data.
 
