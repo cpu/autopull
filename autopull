@@ -36,6 +36,12 @@ git checkout -q -b $BRANCH
 
 $AP_CMD
 
+if [[ $(git diff --shortstat 2> /dev/null | tail -n1) == "" ]]
+then
+  echo "Nothing new to commit. $AP_BRANCH is current."
+  exit 0
+fi
+
 git add --all $AP_FILES
 echo -e "autopull: ${DATE}" | git commit -F -
 git push origin $BRANCH:$BRANCH
