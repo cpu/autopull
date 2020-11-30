@@ -1,4 +1,4 @@
-# zlint autopull
+# ZLint Autopull
 
 [![Build Status](https://travis-ci.com/cpu/zlint-autopull.svg?branch=master)](https://travis-ci.com/cpu/zlint-autopull)
 
