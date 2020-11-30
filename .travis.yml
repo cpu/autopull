@@ -3,10 +3,10 @@ language: go
 sudo: true
 
 go:
-  - "1.13.x"
+  - "1.15.x"
 
 install:
-  - go get github.com/zmap/zlint/v2/cmd/zlint-gtld-update
+  - go get github.com/zmap/zlint/v3/cmd/zlint-gtld-update
 
 script:
   - ./autopull
